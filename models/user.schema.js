@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     ],
+    skillVector: {
+        type: [Number],
+        default: []
+    },
     role: {
         type: String,
         enum: ['admin', 'user'],
