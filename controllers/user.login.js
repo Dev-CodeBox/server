@@ -7,14 +7,14 @@ const userLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
         if (!email) {
-            return res.status(400).json({ message: 'Valid email is required' });
+            return res.status(400).json({ message: 'Email is required' });
         }
         if (!validator.isEmail(email)) {
             return res.status(400).json({ message: 'Please enter a valid email address' });
         }
         const existingUser = await User.findOne({ email });
         if (!existingUser) {
-            return res.status(400).json({ message: 'Invalid email or password' });
+            return res.status(400).json({ message: 'User not found' });
         } else {
             if (!password || password.length < 6) {
                 return res.status(400).json({ message: 'Password must be at least 6 characters long' });
