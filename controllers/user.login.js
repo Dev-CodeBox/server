@@ -32,12 +32,12 @@ const userLogin = async (req, res) => {
                         name: existingUser.name
                     },
                     process.env.JWT_SECRET,
-                    { expiresIn: '1d' });
+                    { expiresIn: '1h' });
                 res.cookie('token', token, {
                     httpOnly: true,
                     secure: process.env.NODE_ENV === 'production',
                     sameSite: 'none',
-                    maxAge: 24 * 60 * 60 * 1000
+                    maxAge: 3600000 // 1 hour
                 }).status(200).json({ success: true, message: 'Login successful' });
             }
         }
