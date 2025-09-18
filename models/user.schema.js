@@ -29,13 +29,17 @@ const userSchema = new mongoose.Schema({
         type: [Number],
         default: []
     },
+    level: {
+        type: String,
+        enum: ['beginner', 'intermediate', 'advanced'],
+        default: 'beginner'
+    },
     role: {
         type: String,
         enum: ['admin', 'user'],
         default: 'user'
     }
 }, { timestamps: true });
-
 
 userSchema.post("save", async (doc) => {
     try {
@@ -52,13 +56,13 @@ userSchema.post("save", async (doc) => {
             to: doc.email,
             subject: "Welcome to Future Fit",
             html: `
-                    <div style="font-family: Arial, sans-serif; padding: 20px; text-align: center; border: 1px solid #eee; border-radius: 10px; max-width: 500px; margin: auto;">
+                <div style="font-family: Arial, sans-serif; padding: 20px; text-align: center; border: 1px solid #eee; border-radius: 10px; max-width: 500px; margin: auto;">
                     <img src="https://img.icons8.com/emoji/96/waving-hand-emoji.png" style="width: 80px; margin-bottom: 20px;" />
                     <h2 style="color: #2b6cb0;">Welcome, ${doc.name}!</h2>
-                    <p>Thanks for joining the <strong>Future Fit</strong>.</p>
+                    <p>Thanks for joining <strong>Future Fit</strong>.</p>
                     <p>You can now explore our features and start your journey with us.</p>
-                    </div>
-                `,
+                </div>
+            `,
         };
 
         await transporter.sendMail(mailOptions);
