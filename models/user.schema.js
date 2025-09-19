@@ -6,6 +6,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    image: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true,
@@ -34,6 +38,12 @@ const userSchema = new mongoose.Schema({
         enum: ['beginner', 'intermediate', 'advanced'],
         default: 'beginner'
     },
+    tests: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Test'
+        }
+    ],
     role: {
         type: String,
         enum: ['admin', 'user'],

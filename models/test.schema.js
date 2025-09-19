@@ -1,27 +1,20 @@
 const mongoose = require('mongoose');
 
 const testSchema = new mongoose.Schema({
-    domain: {
-        type: String,
+    score: {
+        type: Number,
         required: true
     },
-    question: {
-        type: String,
+    totalQuestions: {
+        type: Number,
         required: true
     },
-    options: [{
-        type: String,
+    percentage: {
+        type: Number,
         required: true
-    }],
-    correctAnswer: {
-        type: String,
-        required: true
-    },
-    difficulty: {
-        type: String,
-        enum: ["easy", "medium", "hard"],
-        default: "medium"
-    },
-});
+    }
+}
+    , { timestamps: true }
+);
 
 module.exports = mongoose.model('Test', testSchema);
