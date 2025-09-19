@@ -17,14 +17,13 @@ const sendOtp = async (req, res) => {
             sentTime: Date.now(),
         };
         const transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 465,
-            secure: true,
+            service: "gmail",
             auth: {
                 user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS,
+                pass: process.env.EMAIL_PASS, // yaha app password use karo
             },
         });
+
         const mailOptions = {
             from: `<${process.env.EMAIL_USER}>`,
             to: email,
