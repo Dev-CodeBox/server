@@ -8,6 +8,7 @@ const { userAuthentication, userAuthorization } = require('../middlewares/user.a
 
 const skillTest = require('../controllers/skill.test');
 const submitTest = require('../controllers/submit.test');
+const getTestReport = require('../controllers/get.test.report');
 
 router.post('/signup', userSignup);
 router.post('/login', userLogin);
@@ -19,5 +20,7 @@ router.get('/protected', userAuthentication, userAuthorization, (req, res) => {
 
 router.post('/skill-test', userAuthentication, userAuthorization, skillTest);
 router.post('/submit-test', userAuthentication, userAuthorization, submitTest);
+router.get('/test-report', userAuthentication, userAuthorization, getTestReport);
+
 
 module.exports = router;
