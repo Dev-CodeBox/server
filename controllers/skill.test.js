@@ -16,8 +16,8 @@ const skillTest = async (req, res) => {
       level === "beginner"
         ? "easy"
         : level === "intermediate"
-        ? "medium"
-        : "hard";
+          ? "medium"
+          : "hard";
 
     const llm = new ChatGroq({
       apiKey: process.env.GROQ_API_KEY,
